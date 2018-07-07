@@ -220,16 +220,6 @@ public class EntityFox extends EntityTameable {
 
             if (super.processInteract(player, hand)) { return true; } // breed
 
-            if (!this.world.isRemote && !breedingItem) { // sit or stand
-
-                if (this.isInLove()) { this.aiSit.setSitting(false); } // a really stupid fix for foxes sitting down the instant they are put into love mode, which should never be a thing to begin with because this line isn't supposed to get run if breeding happened????
-                else { this.aiSit.setSitting(!this.isSitting()); }
-
-                this.isJumping = false;
-                this.getNavigator().clearPath();
-                return true;
-            }
-
             if (!item.isEmpty()) {
 
                 if (breedingItem && (this.getHealth() < 15.0F)) { // heal
@@ -279,6 +269,16 @@ public class EntityFox extends EntityTameable {
                     Outfox.proxy.doParticlesSimple("block_cancel", this);
                     return true;
                 }
+            }
+
+            if (!this.world.isRemote && !breedingItem) { // sit or stand
+
+                if (this.isInLove()) { this.aiSit.setSitting(false); } // a really stupid fix for foxes sitting down the instant they are put into love mode, which should never be a thing to begin with because this line isn't supposed to get run if breeding happened????
+                else { this.aiSit.setSitting(!this.isSitting()); }
+
+                this.isJumping = false;
+                this.getNavigator().clearPath();
+                return true;
             }
         }
         else if (!this.isTamed() && (player.capabilities.isCreativeMode || this.aiTempt == null || this.aiTempt.isRunning()) && breedingItem && player.getDistanceSq(this) < 9.0D) { // tame
