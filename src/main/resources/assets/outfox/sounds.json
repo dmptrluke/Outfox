@@ -1,0 +1,39 @@
+{
+    "fox.idle" : {
+        "sounds" : [
+            "outfox:idle1",
+            "outfox:idle2",
+            "outfox:idle3"
+        ],
+        "subtitle" : "outfox.subtitles.fox.idle",
+        "category" : "neutral"
+    },
+    "fox.sniff" : {
+        "sounds" : [
+            { "name" : "outfox:sniff1",
+              "weight" : 6 },
+            { "name" : "outfox:sniff2",
+              "weight" : 6 },
+            { "name" : "outfox:fox.idle",
+              "type" : "event",
+              "weight" : 3 }
+        ],
+        "subtitle" : "outfox.subtitles.fox.sniff",
+        "category" : "neutral"
+    },
+    "fox.hurt" : {
+        "sounds" : [
+            "outfox:hurt1",
+            "outfox:hurt2"
+        ],
+        "subtitle" : "outfox.subtitles.fox.hurt",
+        "category" : "neutral"
+    },
+    "fox.death" : {
+        "sounds" : [
+            "outfox:death"
+        ],
+        "subtitle" : "outfox.subtitles.fox.death",
+        "category" : "neutral"
+    }
+}

@@ -1,0 +1,53 @@
+# note to any translators:
+# if you skip translating a line, don't copy the english line into your file
+# omitted lines will be automatically inherited from this file
+# so if you copy an english line, it will become outdated/inaccurate when this file changes
+
+# also: THANK YOU you are awesome
+
+
+# config screen comments & tooltips
+
+outfox.config.category_biomes=Spawn biomes
+outfox.config.category_biomes.tooltip=Fox spawn biome configuration.
+outfox.config.category_general=General settings
+outfox.config.category_general.tooltip=Miscellaneous config settings.
+outfox.config.category_search=Block searching
+outfox.config.category_search.tooltip=Block searching AI configuration.
+outfox.config.common_biomes=Common biomes
+outfox.config.common_biomes.tooltip=List of biomes that foxes should be common spawns in.
+outfox.config.immune_tools=Immune tools
+outfox.config.immune_tools.tooltip=Item ID names that contain any of these keys will be unable to hurt your tame foxes.
+outfox.config.particles_enabled=Helper particles
+outfox.config.particles_enabled.tooltip=Should particles be used to indicate block seach status?
+outfox.config.rare_biomes=Rare biomes
+outfox.config.rare_biomes.tooltip=List of biomes that foxes should be rare spawns in.
+outfox.config.search_enabled=Search enabled
+outfox.config.search_enabled.tooltip=Is block searching enabled?
+outfox.config.search_frequency=Search interval
+outfox.config.search_frequency.tooltip=The time, in ticks, between block searches.
+outfox.config.search_list=Block blacklist
+outfox.config.search_list.tooltip=A list of blocks that foxes should be disallowed from searching for.
+outfox.config.search_listmode=Blacklist is whitelist
+outfox.config.search_listmode.tooltip=Use "block blacklist" as a whitelist instead?
+outfox.config.search_odds=Random fail chance
+outfox.config.search_odds.tooltip=The probability that a block search will fail to detect blocks even if some are in range.
+outfox.config.search_range=Search range
+outfox.config.search_range.tooltip=The distance, in blocks, that the fox should search away from itself.
+outfox.config.search_waypoints=Pathfinder waypoints
+outfox.config.search_waypoints.tooltip=The number of waypoints to use in search pathfinding AI.\nRequires save & quit to change!
+outfox.config.state_matches=Block state tags
+outfox.config.state_matches.tooltip=The block state properties that a search must match to succeed.
+
+
+# entity name
+
+entity.outfox.fox.name=Fox
+
+
+# subtitles
+
+outfox.subtitles.fox.idle=Fox trills
+outfox.subtitles.fox.sniff=Fox sniffs
+outfox.subtitles.fox.hurt=Fox hurts
+outfox.subtitles.fox.death=Fox dies

@@ -1,0 +1,12 @@
+/.git
+/.gradle
+/.settings
+/build
+/bin
+/run
+
+/.classpath
+/.gitattributes
+/.project
+/copy.bat
+/*.launch

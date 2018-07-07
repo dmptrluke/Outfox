@@ -1,0 +1,12 @@
+[{
+  "modid": "outfox",
+  "name": "Outfox",
+  "description": "Adds adorable, tameable Foxes to Minecraft's forests. Once befriended, they can sniff out any block in the world and lead you to them.",
+  "version": "_DEV_",
+  "mcversion": "1.12.2-14.23.3.2678",
+  "logoFile": "assets/outfox/textures/logo_smooth.png",
+  "url": "",
+  "updateJSON": "",
+  "authorList": ["Kais"],
+  "credits": "Sounds courtesy of:\n  * Volodins Bioacoustical Group (bioacoustica.org)\n  * Nick Judy (youtube.com/channel/UC1G-yh8Xvv1cMxzR_PUQlpw)"
+}]

@@ -1,0 +1,48 @@
+# yarrr? yarrr.
+
+
+# config screen comments & tooltips
+
+outfox.config.category_biomes=Ports o' call
+outfox.config.category_biomes.tooltip=Whar shall the li'l mutts moor their vessels?
+outfox.config.category_general=Odds an' ends
+outfox.config.category_general.tooltip=Switches an' knobs what don't fit in the other chests.
+outfox.config.category_search=Treasure mappin'
+outfox.config.category_search.tooltip=Teach the furballs ta hunt loot like a true sea rogue!
+outfox.config.common_biomes=Ports o' dennin'
+outfox.config.common_biomes.tooltip=These waters be lousy wit 'em!
+outfox.config.immune_tools='Armless diggin' tools
+outfox.config.immune_tools.tooltip=Ye'll be mindful 'round yer pets when swingin' these.
+outfox.config.particles_enabled=Sniffin' smoke
+outfox.config.particles_enabled.tooltip=Shall yer fuzzy mateys make lights at ye, ta tell ye when treasure's afoot?
+outfox.config.rare_biomes=Ports o' prowlin'
+outfox.config.rare_biomes.tooltip=They be sailin' these shippin' lines once a spell.
+outfox.config.search_enabled=Bein' handy
+outfox.config.search_enabled.tooltip=Can the fuzzy wastrels 'elp wit treasure hunts?
+outfox.config.search_frequency=Breaths 'tween whiffs
+outfox.config.search_frequency.tooltip=How often shall the furballs go a-sniffin'?
+outfox.config.search_list=Treasures most foul
+outfox.config.search_list.tooltip=What cursed jewels ought the mutts ne'er lay their paws on?
+outfox.config.search_listmode=Grave robbin'
+outfox.config.search_listmode.tooltip=Be ye such a ruthless bandit that ye'd send yer pets after those accursed fortunes?
+outfox.config.search_odds=Odds o' failin'
+outfox.config.search_odds.tooltip=The odds o' yer pet missin' a whiff o' booty.
+outfox.config.search_range=Surveyin' distance
+outfox.config.search_range.tooltip=How many leagues shall they chart the seas fer?
+outfox.config.search_waypoints=Number o' buoys
+outfox.config.search_waypoints.tooltip=How many paces ta the East did that map say again?\nYe must drop yer anchor ta change this!
+outfox.config.state_matches=Types o' treasure
+outfox.config.state_matches.tooltip=What marks o' mintin' must the mangy mutts watch fer when checkin' found coins?
+
+
+# entity name
+
+entity.outfox.fox.name=Clever Critter
+
+
+# subtitles
+
+outfox.subtitles.fox.idle=Clever Critter trills
+outfox.subtitles.fox.sniff=Clever Critter sniffs
+outfox.subtitles.fox.hurt=Clever Critter hurts
+outfox.subtitles.fox.death=Clever Critter dies
