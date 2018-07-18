@@ -214,7 +214,7 @@ public class EntityFox extends EntityTameable {
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
 
         ItemStack item = player.getHeldItem(hand);
-        boolean breedingItem = item.getItem() instanceof ItemFood && isBreedingItem(item);
+        boolean isFoxFood = item.getItem() instanceof ItemFood && isBreedingItem(item);
 
         if (this.isTamed() && this.isOwner(player)) {
 
@@ -222,7 +222,7 @@ public class EntityFox extends EntityTameable {
 
             if (!item.isEmpty()) {
 
-                if (breedingItem && (this.getHealth() < 15.0F)) { // heal
+                if (isFoxFood && (this.getHealth() < 15.0F)) { // heal
 
                     ItemFood food = (ItemFood)item.getItem();
                     this.heal(food.getHealAmount(item));
@@ -271,23 +271,21 @@ public class EntityFox extends EntityTameable {
                 }
             }
 
-            if (!this.world.isRemote && !breedingItem) { // sit or stand
+            if (!this.world.isRemote && hand.equals(EnumHand.MAIN_HAND) && item.isEmpty() && player.getHeldItem(EnumHand.OFF_HAND).isEmpty()) { // sit or stand
 
-                if (this.isInLove()) { this.aiSit.setSitting(false); } // a really stupid fix for foxes sitting down the instant they are put into love mode, which should never be a thing to begin with because this line isn't supposed to get run if breeding happened????
-                else { this.aiSit.setSitting(!this.isSitting()); }
-
+                this.aiSit.setSitting(!this.isSitting());
                 this.isJumping = false;
                 this.getNavigator().clearPath();
                 return true;
             }
         }
-        else if (!this.isTamed() && (player.capabilities.isCreativeMode || this.aiTempt == null || this.aiTempt.isRunning()) && breedingItem && player.getDistanceSq(this) < 9.0D) { // tame
+        else if (!this.isTamed() && (player.capabilities.isCreativeMode || this.aiTempt == null || this.aiTempt.isRunning()) && isFoxFood && player.getDistanceSq(this) < 9.0D) { // tame
 
             if (!player.capabilities.isCreativeMode) { item.shrink(1); }
 
             if (!this.world.isRemote) {
 
-                if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) { // success
+                if (this.rand.nextInt(2) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) { // success
 
                     this.setTamedBy(player);
                     this.playTameEffect(true);
@@ -424,7 +422,7 @@ public class EntityFox extends EntityTameable {
         else if (id == 9) {
 
             Vec3d v = Vec3d.fromPitchYaw(0.0F, this.getRotationYawHead());
-            Outfox.proxy.doParticleEffect("searching", this, this.posX + (v.x * 0.8D), this.getEntityBoundingBox().minY + 0.6D, this.posZ + (v.z * 0.8D), 0.0D, 0.05D, 0.0D); // TODO: this particles moves down instead of up when the player is within ~1 block, no clue why
+            Outfox.proxy.doParticleEffect("searching", this, this.posX + (v.x * 0.8D), this.getEntityBoundingBox().minY + 0.6D, this.posZ + (v.z * 0.8D), 0.0D, 0.05D, 0.0D); // TODO: this particle moves down instead of up when the player is within ~1 block, no clue why
         }
         else {
 
