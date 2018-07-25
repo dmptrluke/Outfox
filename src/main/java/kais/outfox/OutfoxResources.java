@@ -12,14 +12,19 @@ package kais.outfox;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -94,16 +99,49 @@ public class OutfoxResources {
     /**
      * converts an array of String ResourceLocations into an ArrayList of Biomes for registering
      */
-    public static ArrayList<Biome> stringsToBiomes(String[] input) {
+    private static ArrayList<Biome> stringsToBiomes(String[] input) {
 
         ArrayList<Biome> biomes = new ArrayList<Biome>();
+
         for (String i : input) {
 
             String[] j = i.split(":", 2);
+            if (j.length != 2) {
+
+                logWarn("Invalid biome ID '" + i + "' in biome config, skipped");
+                continue;
+            }
             Biome b = Biome.REGISTRY.getObject(new ResourceLocation(j[0], j[1]));
             if (b != null) { biomes.add(b); }
+            else { logWarn("Invalid biome ID '" + i + "' in biome config, skipped"); }
         }
 
+        return biomes;
+    }
+
+    /**
+     * converts an array of String BiomeDictionary Types into an ArrayList of Biomes for registering
+     */
+    private static ArrayList<Biome> stringTypesToBiomes(String[] input) {
+
+        ArrayList<Biome> biomes = new ArrayList<Biome>();
+        Collection<BiomeDictionary.Type> allBiomes = BiomeDictionary.Type.getAll();
+        Map<String, BiomeDictionary.Type> biomesByType = allBiomes.stream().collect(Collectors.toMap(BiomeDictionary.Type::getName, Function.identity()));
+
+        for (String biome : input) {
+
+            String b = biome.toUpperCase();
+            if (allBiomes.contains(biomesByType.get(b))) { biomes.addAll((BiomeDictionary.getBiomes(BiomeDictionary.Type.getType(biome)))); }
+            else { logWarn("Invalid biome type '" + biome + "' in biome config, skipped"); }
+        }
+
+        return biomes;
+    }
+
+    public static ArrayList<Biome> mergeBiomes(String[] inputBiomes, String[] inputTypes) {
+
+        ArrayList<Biome> biomes = stringsToBiomes(inputBiomes);
+        biomes.addAll(stringTypesToBiomes(inputTypes));
         return biomes;
     }
 

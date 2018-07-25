@@ -52,6 +52,18 @@ public class OutfoxConfig {
         public String[] common_biomes = OutfoxResources.DEFAULT_COMMON_BIOMES;
 
         @Config.Comment({
+            "List of biome dictionary types that foxes should be common spawns in.",
+            "This is for modpacks with large numbers of biomes to lazily add foxes to many biomes at once.",
+            "For a list of valid biome types, check the Forge biome dictionary source at:",
+            "https://github.com/MinecraftForge/MinecraftForge/blob/1.12.x/src/main/java/net/minecraftforge/common/BiomeDictionary.java", // except for this line :/
+            "This setting requires a Minecraft restart if changed from the in-game config menu!",
+            "Default: (empty)"
+        })
+        @Config.LangKey("outfox.config.common_types")
+        @Config.RequiresMcRestart
+        public String[] common_types = {};
+
+        @Config.Comment({
             "List of biomes that foxes should be rare spawns in.",
             "This setting requires a Minecraft restart if changed from the in-game config menu!",
             "Default:",
@@ -66,6 +78,16 @@ public class OutfoxConfig {
         @Config.LangKey("outfox.config.rare_biomes")
         @Config.RequiresMcRestart
         public String[] rare_biomes = OutfoxResources.DEFAULT_RARE_BIOMES;
+
+        @Config.Comment({
+            "List of biome dictionary types that foxes should be rare spawns in.",
+            "This is for modpacks with large numbers of biomes to lazily add foxes to many biomes at once.",
+            "This setting requires a Minecraft restart if changed from the in-game config menu!",
+            "Default: (empty)"
+        })
+        @Config.LangKey("outfox.config.rare_types")
+        @Config.RequiresMcRestart
+        public String[] rare_types = {};
     }
 
     public static class General {

@@ -54,8 +54,8 @@ public class Outfox {
                 .entity(EntityFox.class)
                 .id(new ResourceLocation(OutfoxResources.MODID, "fox"), 0)
                 .name(OutfoxResources.MODID + ".fox")
-                .spawn(EnumCreatureType.CREATURE, 9, 2, 5, OutfoxResources.stringsToBiomes(OutfoxConfig.biomes.common_biomes))
-                .spawn(EnumCreatureType.CREATURE, 3, 1, 2, OutfoxResources.stringsToBiomes(OutfoxConfig.biomes.rare_biomes))
+                .spawn(EnumCreatureType.CREATURE, 11, 2, 5, OutfoxResources.mergeBiomes(OutfoxConfig.biomes.common_biomes, OutfoxConfig.biomes.common_types))
+                .spawn(EnumCreatureType.CREATURE, 4, 2, 3, OutfoxResources.mergeBiomes(OutfoxConfig.biomes.rare_biomes, OutfoxConfig.biomes.rare_types))
                 .egg(0xFF9F2B, 0x404040)
                 .tracker(64, 4, false)
                 .build());
@@ -73,6 +73,10 @@ public class Outfox {
         OutfoxConfig.sync();
         proxy.registerRender();
 
-        if (OutfoxConfig.biomes.common_biomes.length == 0 && OutfoxConfig.biomes.rare_biomes.length == 0) { OutfoxResources.logWarn("Fox has no configured spawn biomes"); }
+        if (OutfoxConfig.biomes.common_biomes.length == 0 && OutfoxConfig.biomes.common_types.length == 0
+            && OutfoxConfig.biomes.rare_biomes.length == 0 && OutfoxConfig.biomes.rare_types.length == 0) {
+
+            OutfoxResources.logWarn("Fox has no configured spawn biomes");
+        }
     }
 }
