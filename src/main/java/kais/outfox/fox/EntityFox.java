@@ -111,7 +111,7 @@ public class EntityFox extends EntityTameable {
         this.tasks.addTask(6, this.aiSearch);
         this.tasks.addTask(7, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
         this.tasks.addTask(8, new EntityAIWanderAvoidWater(this, 1.0D));
-        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
+        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 12.0F));
     }
 
     protected void entityInit() {
@@ -148,7 +148,10 @@ public class EntityFox extends EntityTameable {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
         if (compound.hasKey("RibbonColor", 99)) { this.setRibbonColor(EnumDyeColor.byDyeDamage(compound.getByte("RibbonColor"))); }
-        else { this.setRibbonColor(EnumDyeColor.BLUE); }
+        else {
+            OutfoxResources.logWarn("A fox didn't have a saved ribbon color for some reason, defaulting to blue");
+            this.setRibbonColor(EnumDyeColor.BLUE);
+        }
         if (this.aiSit != null) { this.aiSit.setSitting(compound.getBoolean("Sitting")); }
     }
 
@@ -248,7 +251,7 @@ public class EntityFox extends EntityTameable {
 
                         this.searchedBlock = b;
                         this.setBlockTags(b, item.getMetadata());
-                        if (this.searchedBlock != null) { Outfox.proxy.doParticlesSimple("block_set", this); }
+                        Outfox.proxy.doParticlesSimple("block_set", this);
                         return true;
                     }
                     else { // block is disallowed
@@ -328,6 +331,7 @@ public class EntityFox extends EntityTameable {
     public EntityFox createChild(EntityAgeable ageable) {
 
         EntityFox fox = new EntityFox(this.world);
+        fox.setVariant(this.rand.nextInt(6));
         UUID uuid = this.getOwnerId();
 
         if (uuid != null) {
@@ -341,10 +345,15 @@ public class EntityFox extends EntityTameable {
 
     public boolean hitByEntity(Entity entityIn) {
 
-        if (entityIn instanceof EntityPlayer && (EntityPlayer)entityIn == this.getOwner()) {
+        if (entityIn instanceof EntityPlayer
+            && (EntityPlayer)entityIn == this.getOwner()
+            // && this.getOwner().isSwingInProgress
+            && this.getOwner().swingingHand != null) {
+
+            String item = this.getOwner().getHeldItem(this.getOwner().swingingHand).getItem().getRegistryName().getResourcePath();
             for (String s : OutfoxConfig.general.immune_tools) {
 
-                if (this.getOwner().getHeldItem(this.getOwner().swingingHand).getItem().getRegistryName().getResourcePath().contains(s)) { return true; }
+                if (item.contains(s)) { return true; }
             }
         }
 
@@ -356,7 +365,7 @@ public class EntityFox extends EntityTameable {
     public boolean canBePushed() {
 
        if (this.aiSearch != null && this.aiSearch.isBlockFound()) { return !this.getNavigator().noPath() && super.canBePushed(); } // TODO: why isn't this working
-        return super.canBePushed();
+       return super.canBePushed();
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn) {

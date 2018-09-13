@@ -92,9 +92,9 @@ public class OutfoxResources {
         "shade" // flat-colored-blocks
     };
 
-    public static void logInfo(String message) { LOGGER.info(message); }
-    public static void logWarn(String message) { LOGGER.warn(message); }
-    public static void logError(String message) { LOGGER.error(message); }
+    public static void logInfo(String message) { if (OutfoxConfig.general.logging_enabled) { LOGGER.info(message); }}
+    public static void logWarn(String message) { if (OutfoxConfig.general.logging_enabled) { LOGGER.warn(message); }}
+    public static void logError(String message) { if (OutfoxConfig.general.logging_enabled) { LOGGER.error(message); }}
 
     /**
      * converts an array of String ResourceLocations into an ArrayList of Biomes for registering
@@ -159,6 +159,11 @@ public class OutfoxResources {
 
         for (String s : OutfoxConfig.search.state_matches) {
 
+            /**
+             * the state string contains properties in the format: [property1=value1,property2=value2,property3=value3]
+             * this regex matches: s + "=" + whatever, which all must be bounded on the left by "[" or "," and on the right by "]" or ","
+             * the part after the "=" (which is what we ultimately need) can be accessed using group 1
+             */
             pattern = Pattern.compile("(?:[\\[,]" + s + ".*?=)(.*?(?=[\\],]))");
             matcher = pattern.matcher(statestring);
 
@@ -166,6 +171,7 @@ public class OutfoxResources {
 
                 String g = matcher.group(1);
                 if (g != null && !g.equals("")) { map.put(s, g); }
+                else { logWarn("The blockstate '" + s + "' was found on block '" + state.getBlock().getRegistryName() + "' but had null or blank value, ignoring"); }
             }
         }
 

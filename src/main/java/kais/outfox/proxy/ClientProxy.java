@@ -11,6 +11,7 @@
 package kais.outfox.proxy;
 
 import kais.outfox.OutfoxConfig;
+import kais.outfox.OutfoxResources;
 import kais.outfox.fox.EntityFox;
 import kais.outfox.fox.RenderFox;
 import net.minecraft.client.renderer.entity.Render;
@@ -76,7 +77,9 @@ public class ClientProxy extends ServerProxy {
             particle = EnumParticleTypes.WATER_SPLASH;
             break;
 
-        default: break;
+        default:
+            OutfoxResources.logError("Tried to create a wrong particle, this should never happen");
+            break;
         }
 
         if (particle != null) { fox.world.spawnParticle(particle, true, xpos, ypos, zpos, xvel, yvel, zvel); }

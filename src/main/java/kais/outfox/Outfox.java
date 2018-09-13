@@ -76,7 +76,7 @@ public class Outfox {
         if (OutfoxConfig.biomes.common_biomes.length == 0 && OutfoxConfig.biomes.common_types.length == 0
             && OutfoxConfig.biomes.rare_biomes.length == 0 && OutfoxConfig.biomes.rare_types.length == 0) {
 
-            OutfoxResources.logWarn("Fox has no configured spawn biomes");
+            OutfoxResources.logWarn("Fox has no configured spawn biomes, I hope you know what you're doing");
         }
     }
 }

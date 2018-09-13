@@ -92,6 +92,10 @@ public class OutfoxConfig {
 
     public static class General {
 
+        @Config.Comment({"Send warning messages to the logfile?"})
+        @Config.LangKey("outfox.config.logging_enabled")
+        public boolean logging_enabled = true;
+
         @Config.Comment({
             "Averts workplace accidents in tight spaces.",
             "If the second half of an item's ID name (e.g. minecraft:iron_pickaxe) contains one of these keys,",
@@ -134,7 +138,7 @@ public class OutfoxConfig {
         @Config.LangKey("outfox.config.search_list")
         public String[] search_list = { };
 
-        @Config.Comment({"Whether 'Search Blacklist' should be used as a whitelist instead. If true, foxes will",
+        @Config.Comment({"Whether 'search_list' should be used as a whitelist instead. If true, foxes will",
             "only be allowed to search for blocks specified on that list."})
         @Config.LangKey("outfox.config.search_listmode")
         public boolean search_listmode = false;
