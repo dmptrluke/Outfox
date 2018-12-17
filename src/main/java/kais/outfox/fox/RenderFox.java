@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Aiden Vaughn "ItsTheKais"
+ * Copyright ï¿½ 2018 Aiden Vaughn "ItsTheKais"
  *
  * This file is part of Outfox.
  *
@@ -41,6 +41,8 @@ public class RenderFox extends RenderLiving<EntityFox> {
 
         if (fox.hasCustomName() && fox.getCustomNameTag().equals("Kais")) {
             return OutfoxTextures.FOX_RAINBOW_TEX;
+        } else if (fox.hasCustomName() && fox.getCustomNameTag().equals("Woxie")) {
+            return OutfoxTextures.FOX_WOX_TEX;
         } else {
             return OutfoxTextures.FOX_TEX_SET[fox.getVariant()];
         }

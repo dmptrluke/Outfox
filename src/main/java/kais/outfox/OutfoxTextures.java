@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Aiden Vaughn "ItsTheKais"
+ * Copyright ï¿½ 2018 Aiden Vaughn "ItsTheKais"
  *
  * This file is part of Outfox.
  *
@@ -21,6 +21,7 @@ public class OutfoxTextures {
     public static final ResourceLocation FOX_MARBLE_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_marble.png");
     public static final ResourceLocation FOX_PALE_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_pale.png");
     public static final ResourceLocation FOX_RAINBOW_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_rainbow.png");
+    public static final ResourceLocation FOX_WOX_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_wox.png");
     public static final ResourceLocation FOX_RED_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_red.png");
     public static final ResourceLocation FOX_RIBBON_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_ribbon.png");
     public static final ResourceLocation FOX_RUSTY_TEX = new ResourceLocation(OutfoxResources.MODID, "textures/fox/fox_rusty.png");
